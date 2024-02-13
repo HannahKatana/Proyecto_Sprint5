@@ -4,13 +4,14 @@ import streamlit as st
 
 car_data = pd.read_csv('vehicles_us.csv')
 
+# Creación contenido de nuestra aplicación basada en Streamlit.
 # Encabezado con texto
 st.header("Análisis de Anuncios de Venta de Vehículos")
 
 # Botón para mostrar u ocultar el histograma de condición vs. modelo
 show_histogram_button = st.button("Histograma de Condición vs. Modelo")
 
-# Casilla de verificación para seleccionar el modelo del auto en el gráfico de dispersión
+# Checkbox para seleccionar el modelo del auto en el gráfico de dispersión
 show_scatter_checkbox = st.checkbox("Gráfico de Dispersión de Precio vs. Año del Modelo por modelo del auto")
 
 # Lista de modelos de automóviles
@@ -28,10 +29,10 @@ def build_scatter():
     fig = px.scatter(filtered_data, x="model_year", y="price", title=f"Gráfico de Dispersión de Precio vs. Año del Modelo para {selected_model}")
     st.plotly_chart(fig, use_container_width=True)
 
-# Verificar si se hace clic en el botón y mostrar el histograma
+# Verificación si se hace clic en el botón y mostrar el histograma
 if show_histogram_button:
     build_histogram()
 
-# Verificar si la casilla de verificación está seleccionada y mostrar el gráfico de dispersión
+# Verificación si el checkbox está seleccionado y mostrar el gráfico de dispersión
 if show_scatter_checkbox:
     build_scatter()
